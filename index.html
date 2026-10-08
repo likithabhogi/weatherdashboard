@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WeatherNow - Weather Dashboard</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animation.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="weather-sunny">
+
+    <!-- Animated Background -->
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span>Weather<span class="logo-highlight">Now</span></span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#forecast">Forecast</a>
+            <a href="#details">Details</a>
+        </nav>
+
+        <button class="theme-btn" id="themeBtn">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+
+    <main id="home">
+
+        <!-- Search Section -->
+        <section class="search-section">
+
+            <div class="welcome-text">
+                <p>Discover the weather around you</p>
+                <h1>How's the weather today?</h1>
+            </div>
+
+            <div class="search-box">
+                <i class="fa-solid fa-location-dot"></i>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city, town, village or PIN code..."
+                    autocomplete="off"
+                >
+
+                <button id="searchBtn" type="button">
+                    Search
+                </button>
+
+                <!-- Current Location -->
+                <button
+                    class="location-btn"
+                    id="locationBtn"
+                    type="button"
+                >
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    Use My Location
+                </button>
+            </div>
+
+            <!-- Error message container -->
+            <p class="search-error" id="searchError" style="display: none;"></p>
+        </section>
+
+
+        <!-- Current Weather -->
+        <section class="current-weather">
+
+            <div class="location-info">
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="locationName">Visakhapatnam, India</span>
+                </div>
+
+                <p id="currentDate">Tuesday, August 25</p>
+            </div>
+
+            <div class="weather-main">
+
+                <div class="weather-icon-container">
+                    <div id="weatherIcon" class="weather-icon">
+                        ☀️
+                    </div>
+                </div>
+
+                <div class="temperature-container">
+                    <h2>
+                        <span id="temperature">28</span>
+                        <sup>°C</sup>
+                    </h2>
+
+                    <h3 id="weatherCondition">Mostly Sunny</h3>
+
+                    <p>
+                        Feels like
+                        <strong>
+                            <span id="feelsLike">30</span>°C
+                        </strong>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="weather-message" id="weatherMessage">
+                <i class="fa-solid fa-sun"></i>
+                <span>It's a beautiful day! Perfect for outdoor activities.</span>
+            </div>
+
+        </section>
+
+
+        <!-- Weather Details -->
+        <section class="details-section" id="details">
+
+            <div class="section-title">
+                <h2>Today's Weather</h2>
+                <p>Everything you need to know</p>
+            </div>
+
+            <div class="details-grid">
+
+                <div class="weather-card">
+                    <div class="card-icon humidity-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+
+                    <div>
+                        <p>Humidity</p>
+                        <h3><span id="humidity">68</span>%</h3>
+                    </div>
+                </div>
+
+
+                <div class="weather-card">
+                    <div class="card-icon wind-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+
+                    <div>
+                        <p>Wind Speed</p>
+                        <h3><span id="windSpeed">14</span> km/h</h3>
+                    </div>
+                </div>
+
+
+                <div class="weather-card">
+                    <div class="card-icon rain-icon">
+                        <i class="fa-solid fa-cloud-rain"></i>
+                    </div>
+
+                    <div>
+                        <p>Chance of Rain</p>
+                        <h3><span id="rainChance">10</span>%</h3>
+                    </div>
+                </div>
+
+
+                <div class="weather-card">
+                    <div class="card-icon visibility-icon">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+
+                    <div>
+                        <p>Visibility</p>
+                        <h3><span id="visibility">8</span> km</h3>
+                    </div>
+                </div>
+
+
+                <div class="weather-card">
+                    <div class="card-icon pressure-icon">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+
+                    <div>
+                        <p>Pressure</p>
+                        <h3><span id="pressure">1012</span> hPa</h3>
+                    </div>
+                </div>
+
+
+                <div class="weather-card">
+                    <div class="card-icon uv-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <div>
+                        <p>UV Index</p>
+                        <h3><span id="uvIndex">5</span> Moderate</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Hourly Forecast -->
+        <section class="forecast-section">
+
+            <div class="section-title">
+                <h2>Hourly Forecast</h2>
+                <p>Weather throughout the day</p>
+            </div>
+
+            <div class="hourly-container" id="hourlyForecast">
+
+                <div class="hour-card active">
+                    <p>Now</p>
+                    <div>☀️</div>
+                    <h3>28°</h3>
+                </div>
+
+                <div class="hour-card">
+                    <p>6 PM</p>
+                    <div>🌤️</div>
+                    <h3>27°</h3>
+                </div>
+
+                <div class="hour-card">
+                    <p>7 PM</p>
+                    <div>🌤️</div>
+                    <h3>26°</h3>
+                </div>
+
+                <div class="hour-card">
+                    <p>8 PM</p>
+                    <div>🌙</div>
+                    <h3>25°</h3>
+                </div>
+
+                <div class="hour-card">
+                    <p>9 PM</p>
+                    <div>🌙</div>
+                    <h3>24°</h3>
+                </div>
+
+                <div class="hour-card">
+                    <p>10 PM</p>
+                    <div>🌙</div>
+                    <h3>23°</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 7 Day Forecast -->
+        <section class="forecast-section" id="forecast">
+
+            <div class="section-title">
+                <h2>7-Day Forecast</h2>
+                <p>Plan your week with confidence</p>
+            </div>
+
+            <div class="weekly-container" id="weeklyForecast">
+
+                <div class="day-card">
+                    <div>
+                        <strong>Today</strong>
+                        <p>Sunny</p>
+                    </div>
+
+                    <span class="forecast-icon">☀️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>30°</strong>
+                        <span>24°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Sun</strong>
+                        <p>Partly Cloudy</p>
+                    </div>
+
+                    <span class="forecast-icon">🌤️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>29°</strong>
+                        <span>23°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Mon</strong>
+                        <p>Cloudy</p>
+                    </div>
+
+                    <span class="forecast-icon">☁️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>28°</strong>
+                        <span>22°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Tue</strong>
+                        <p>Rain</p>
+                    </div>
+
+                    <span class="forecast-icon">🌧️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>27°</strong>
+                        <span>21°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Wed</strong>
+                        <p>Rain</p>
+                    </div>
+
+                    <span class="forecast-icon">🌧️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>26°</strong>
+                        <span>20°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Thu</strong>
+                        <p>Sunny</p>
+                    </div>
+
+                    <span class="forecast-icon">☀️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>29°</strong>
+                        <span>22°</span>
+                    </div>
+                </div>
+
+
+                <div class="day-card">
+                    <div>
+                        <strong>Fri</strong>
+                        <p>Partly Cloudy</p>
+                    </div>
+
+                    <span class="forecast-icon">🌤️</span>
+
+                    <div class="forecast-temperature">
+                        <strong>30°</strong>
+                        <span>23°</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            Weather<span class="logo-highlight">Now</span>
+        </div>
+
+        <p>Weather information made simple and beautiful.</p>
+
+        <p class="copyright">
+            © 2026 WeatherNow
+        </p>
+    </footer>
+
+
+    <!-- JavaScript -->
+   <script src="js/aconfig.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
